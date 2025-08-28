@@ -9,7 +9,9 @@ import {getRequestInitValues, loadBackground, loadGeoJson} from "./utils/GeoJSON
 import type {FeatureLayer} from "@luciad/ria/view/feature/FeatureLayer.js";
 import type {Feature} from "@luciad/ria/model/feature/Feature.js";
 
-const defaultProjection = "EPSG:4978";
+const WebMercator = "EPSG:3857"
+// const CRS84 = "EPSG:4978";
+const defaultProjection = WebMercator;
 
 
 // Get reference from URL query params or default to EPSG:4978
