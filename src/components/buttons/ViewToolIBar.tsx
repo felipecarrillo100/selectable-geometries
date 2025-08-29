@@ -8,10 +8,10 @@ import RotateLeftIcon from "@mui/icons-material/RotateLeft";
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import VisibilityIcon from "@mui/icons-material/Visibility"; // first-person / horizon
 import LandscapeIcon from "@mui/icons-material/Landscape";     // horizon / first-person
-
+import NavigationIcon from "@mui/icons-material/Navigation";     // horizon / first-person
 
 import type { WebGLMap } from "@luciad/ria/view/WebGLMap.js";
-import { carPerspective, helicopterPerspective, turn } from "./utills/NavigationUtils.ts";
+import {carPerspective, helicopterPerspective, rotateToNorth, turn} from "./utills/NavigationUtils.ts";
 import type {FeatureLayer} from "@luciad/ria/view/feature/FeatureLayer.js";
 
 interface Props {
@@ -38,14 +38,14 @@ export const ViewToolIBar: React.FC<Props> = ({ mapRef, layerRef }) => {
             icon: <RotateLeftIcon />,
             name: "Rotate Left",
             onClick: () => {
-                if (mapRef.current) turn(mapRef.current, -1);
+                if (mapRef.current) turn(mapRef.current, 1);
             },
         },
         {
             icon: <RotateRightIcon />,
             name: "Rotate Right",
             onClick: () => {
-                if (mapRef.current) turn(mapRef.current, 1);
+                if (mapRef.current) turn(mapRef.current, -1);
             },
         },
         {
@@ -60,6 +60,13 @@ export const ViewToolIBar: React.FC<Props> = ({ mapRef, layerRef }) => {
             name: "Top",
             onClick: () => {
                 if (mapRef.current) helicopterPerspective(mapRef.current);
+            },
+        },
+        {
+            icon: <NavigationIcon  />,
+            name: "Top",
+            onClick: () => {
+                if (mapRef.current) rotateToNorth(mapRef.current);
             },
         },
 

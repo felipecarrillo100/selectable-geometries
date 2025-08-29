@@ -19,7 +19,7 @@ const App: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
-    const onShowTime = (status: boolean) => {
+    const onShowTime = (status: boolean, errorMessage?:string) => {
         if (status) {
             setLoading(false);
             setError(null);
@@ -31,7 +31,8 @@ const App: React.FC = () => {
             });
         } else {
             setLoading(false);
-            setError("Failed to load the data. Verify the data url");
+            if (errorMessage) setError(errorMessage);
+            else setError("Failed to load the data. Verify the data url");
         }
     };
 

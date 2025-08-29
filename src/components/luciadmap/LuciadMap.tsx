@@ -25,7 +25,7 @@ const reference = getReference(referenceIdentifier);
 
 
 interface Props {
-    onShowTime?: (status: boolean) => void;
+    onShowTime?: (status: boolean, errorMessage?: string) => void;
     geometrySelected?: (feature: Feature) => void;
 }
 
@@ -103,6 +103,8 @@ export const LuciadMap: React.FC<Props> = (props: Props) => {
                     if (typeof props.onShowTime === "function") props.onShowTime(false);
                     console.log(`Data unreachable`)
                 });
+            } else {
+                if (typeof props.onShowTime === "function") props.onShowTime(false, "Missing GeoJSON URL");
             }
         }
         return () => {
